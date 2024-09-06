@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsEnum, IsString, Length, MaxLength, MinLength } from "class-validator";
-import { TodoPriority } from "src/todo/domain/todo.model";
+import { TodoPriority } from "../../domain/todo.model";
 
 export class CreateTodoDto {
   @IsString()

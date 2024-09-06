@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose from "mongoose";
-import { List } from "src/list/domain/list.model";
+import { List } from "../../list/domain/list.model";
 
 @Schema()
 export class TodoEntity {

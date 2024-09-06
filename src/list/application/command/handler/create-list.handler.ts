@@ -1,9 +1,9 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from "@nestjs/cqrs";
 import { CreateListCommand } from "../create-list.command";
 import { HttpException, HttpStatus, Inject } from "@nestjs/common";
-import { UserRepository } from "src/user/domain/user.repository";
-import { InjectionToken } from "src/injection-token";
-import { ListRepository } from "src/list/domain/list-repository";
+import { UserRepository } from "../../../../user/domain/user.repository";
+import { InjectionToken } from "../../../../injection-token";
+import { ListRepository } from "../../../domain/list-repository";
 
 @CommandHandler(CreateListCommand)
 export class CreateListHandler implements ICommandHandler<CreateListCommand> {

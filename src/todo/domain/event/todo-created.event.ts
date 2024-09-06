@@ -1,4 +1,4 @@
-import { List } from "src/list/domain/list.model";
+import { List } from "../../../list/domain/list.model";
 import { TodoPriority } from "../todo.model";
 
 export class TodoCreatedEvent {

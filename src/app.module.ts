@@ -11,6 +11,7 @@ const ENV = process.env.NODE_ENV;
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: (ENV == 'test') ? '.env.test' : '.env.dev',
       ignoreEnvFile: (ENV == 'production') ? true : false
     }),
     MongooseModule.forRootAsync({

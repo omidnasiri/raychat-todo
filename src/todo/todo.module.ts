@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TodoCreatedHandler } from './application/event handler/todo-created.handler';
-import { InjectionToken } from 'src/injection-token';
+import { InjectionToken } from '../injection-token';
 import { CqrsModule } from '@nestjs/cqrs';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TodoController } from './user interface/todo.controller';
 import { TodoEntity, TodoSchema } from './infrastructure/todo.entity';
 import { TodoMongoRepository } from './infrastructure/todo.mongo-repository';
 import { CreateTodoHandler } from './application/command/handler/create-todo.handler';
-import { UserModule } from 'src/user/user.module';
-import { ListModule } from 'src/list/list.module';
+import { ListModule } from '../list/list.module';
 
 const TodoRepository = {
   provide: InjectionToken.TODO_REPOSITORY,

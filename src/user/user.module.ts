@@ -6,7 +6,7 @@ import { UserController } from './user interface/user.controller';
 import { RegisterUserHandler } from './application/command/handler/register-user.handler';
 import { UserRegisteredHandler } from './application/event handler/user-registered.handler';
 import { UserMongoRepository } from './infrastructure/user.mongo-repository';
-import { InjectionToken } from 'src/injection-token';
+import { InjectionToken } from '../injection-token';
 
 const userRepository = {
   provide: InjectionToken.USER_REPOSITORY,
