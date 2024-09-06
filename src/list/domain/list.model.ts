@@ -10,7 +10,7 @@ export class List extends AggregateRoot {
     super();
   }
 
-  getId() {
+  get Id() {
     return this.id;
   }
 

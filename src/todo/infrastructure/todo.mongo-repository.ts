@@ -17,7 +17,7 @@ export class TodoMongoRepository implements TodoRepository {
   }
 
   async insert(title: string, description: string, priority: number, list: List): Promise<Todo> {
-    const todoEntity = new this.todoSchema({ title, description, priority, list: { _id: Types.ObjectId.createFromHexString(list.getId()) }});
+    const todoEntity = new this.todoSchema({ title, description, priority, list: { _id: Types.ObjectId.createFromHexString(list.Id) }});
     return this.entityToModel(await todoEntity.save());
   }
 
