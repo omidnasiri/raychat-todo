@@ -14,9 +14,9 @@ const handlers = [
 @Module({
   imports: [
     CqrsModule,
-    MongooseModule.forFeature([{ name: UserEntity.ClassName, schema: UserSchema }]),
+    MongooseModule.forFeature([{ name: UserEntity.CollectionName, schema: UserSchema }]),
   ],
   controllers: [UserController],
-  providers: [...handlers],
+  providers: [...handlers]
 })
 export class UserModule {}

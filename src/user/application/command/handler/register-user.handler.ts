@@ -9,23 +9,23 @@ import { InjectModel } from "@nestjs/mongoose";
 @CommandHandler(RegisterUserCommand)
 export class RegisterUserHandler implements ICommandHandler<RegisterUserCommand> {
   constructor(
-    @InjectModel(UserEntity.ClassName)
-    private readonly userModel: Model<UserEntity>,
+    @InjectModel(UserEntity.CollectionName)
+    private readonly userSchema: Model<UserEntity>,
     private readonly publisher: EventPublisher,
   ) {}
 
   async execute(command: RegisterUserCommand) {
     const { username, password } = command;
 
-    await this.userModel.findOne({ username }).then((item) => {
+    await this.userSchema.findOne({ username }).then((item) => {
       if (item) throw new HttpException('Conflict', HttpStatus.CONFLICT);
     });
     
-    const userEntity = new this.userModel({ username, password });
+    const userEntity = new this.userSchema({ username, password });
     const result = await userEntity.save();
 
     const user = this.publisher.mergeObjectContext(
-      new User(result._id.toString(), command.username, result.password)
+      new User(result._id.toString(), username, password)
     );
 
     user.register();

@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema()
 export class UserEntity {
-  static ClassName = 'User';
+  static CollectionName = 'users';
 
   @Prop()
   id: string;
