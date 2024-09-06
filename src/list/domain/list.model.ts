@@ -1,7 +1,7 @@
 import { AggregateRoot } from "@nestjs/cqrs";
-import { TodoListCreatedEvent } from "../event/todo-list-created.event";
+import { ListCreatedEvent } from "./event/list-created.event";
 
-export class TodoList extends AggregateRoot {
+export class List extends AggregateRoot {
   constructor(
     private readonly id: string,
     private readonly title: string,
@@ -11,6 +11,6 @@ export class TodoList extends AggregateRoot {
   }
 
   create() {
-    this.apply(new TodoListCreatedEvent(this.id, this.title, this.userId));
+    this.apply(new ListCreatedEvent(this.id, this.title, this.userId));
   }
 }

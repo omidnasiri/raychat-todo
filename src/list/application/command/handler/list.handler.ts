@@ -1,36 +1,36 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from "@nestjs/cqrs";
-import { CreateTodoListCommand } from "../create-todo-list.command";
+import { CreateListCommand } from "../create-list.command";
 import { HttpException, HttpStatus, Inject } from "@nestjs/common";
 import { UserRepository } from "src/user/domain/user.repository";
 import { InjectionToken } from "src/injection-token";
-import { TodoRepository } from "src/todo/domain/todo-repository";
+import { ListRepository } from "src/list/domain/list-repository";
 
-@CommandHandler(CreateTodoListCommand)
-export class CreateTodoListHandler implements ICommandHandler<CreateTodoListCommand> {
+@CommandHandler(CreateListCommand)
+export class CreateListHandler implements ICommandHandler<CreateListCommand> {
   constructor(
-    @Inject(InjectionToken.TODO_REPOSITORY)
-    private readonly todoListRepository: TodoRepository,
+    @Inject(InjectionToken.LIST_REPOSITORY)
+    private readonly listRepository: ListRepository,
     @Inject(InjectionToken.USER_REPOSITORY)
     private readonly userRepository: UserRepository,
     private readonly publisher: EventPublisher,
   ) {}
 
-  async execute(command: CreateTodoListCommand) {
+  async execute(command: CreateListCommand) {
     const { userId, title } = command;
 
     await this.userRepository.findById(userId).then((item) => {
       if (!item) throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
     });
 
-    await this.todoListRepository.findByTitleAndUserId(title, userId).then((item) => {
+    await this.listRepository.findByTitleAndUserId(title, userId).then((item) => {
       if (item) throw new HttpException('Conflict', HttpStatus.CONFLICT);
     });
 
-    const todoList = this.publisher.mergeObjectContext(
-      await this.todoListRepository.insert(title, userId)
+    const list = this.publisher.mergeObjectContext(
+      await this.listRepository.insert(title, userId)
     );
 
-    todoList.create();
-    todoList.commit();
+    list.create();
+    list.commit();
   }
 }

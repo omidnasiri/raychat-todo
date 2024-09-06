@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, Length, MaxLength, MinLength } from "class-validator";
 
-export class CreateTodoListDto {
+export class CreateListDto {
   @IsString()
   @MinLength(2)
   @MaxLength(32)
