@@ -5,9 +5,6 @@ export class UserEntity {
   static CollectionName = 'users';
 
   @Prop()
-  id: string;
-
-  @Prop()
   username: string;
 
   @Prop()

@@ -5,7 +5,13 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { UserController } from './user interface/user.controller';
 import { RegisterUserHandler } from './application/command/handler/register-user.handler';
 import { UserRegisteredHandler } from './application/event handler/user-registered.handler';
-import { UserRepository } from './infrastructure/user.repository';
+import { UserMongoRepository } from './infrastructure/user.mongo-repository';
+import { InjectionToken } from 'src/injection-token';
+
+const userRepository = {
+  provide: InjectionToken.USER_REPOSITORY,
+  useClass: UserMongoRepository,
+}
 
 const handlers = [
   RegisterUserHandler,
@@ -19,9 +25,9 @@ const handlers = [
   ],
   controllers: [UserController],
   providers: [
-    UserRepository,
+    userRepository,
     ...handlers,
   ],
-  exports: [UserRepository],
+  exports: [userRepository],
 })
 export class UserModule {}

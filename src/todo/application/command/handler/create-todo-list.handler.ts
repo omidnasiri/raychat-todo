@@ -1,14 +1,16 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from "@nestjs/cqrs";
 import { CreateTodoListCommand } from "../create-todo-list.command";
-import { HttpException, HttpStatus } from "@nestjs/common";
-import { TodoList } from "src/todo/domain/model/todo-list.model";
-import { TodoRepository } from "src/todo/infrastructure/todo-repository";
-import { UserRepository } from "src/user/infrastructure/user.repository";
+import { HttpException, HttpStatus, Inject } from "@nestjs/common";
+import { UserRepository } from "src/user/domain/user.repository";
+import { InjectionToken } from "src/injection-token";
+import { TodoRepository } from "src/todo/domain/todo-repository";
 
 @CommandHandler(CreateTodoListCommand)
 export class CreateTodoListHandler implements ICommandHandler<CreateTodoListCommand> {
   constructor(
+    @Inject(InjectionToken.TODO_REPOSITORY)
     private readonly todoListRepository: TodoRepository,
+    @Inject(InjectionToken.USER_REPOSITORY)
     private readonly userRepository: UserRepository,
     private readonly publisher: EventPublisher,
   ) {}
@@ -24,10 +26,8 @@ export class CreateTodoListHandler implements ICommandHandler<CreateTodoListComm
       if (item) throw new HttpException('Conflict', HttpStatus.CONFLICT);
     });
 
-    const result = await this.todoListRepository.insert(title, userId);
-
     const todoList = this.publisher.mergeObjectContext(
-      new TodoList(result._id.toString(), title, command.userId)
+      await this.todoListRepository.insert(title, userId)
     );
 
     todoList.create();

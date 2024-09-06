@@ -6,7 +6,13 @@ import { TodoListCreatedHandler } from './application/event handler/todo-list-cr
 import { CreateTodoListHandler } from './application/command/handler/create-todo-list.handler';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from 'src/user/user.module';
-import { TodoRepository } from './infrastructure/todo-repository';
+import { InjectionToken } from 'src/injection-token';
+import { TodoMongoRepository } from './infrastructure/todo.mongo-repository';
+
+const TodoRepository = {
+  provide: InjectionToken.TODO_REPOSITORY,
+  useClass: TodoMongoRepository,
+}
 
 const handlers = [
   CreateTodoListHandler,
