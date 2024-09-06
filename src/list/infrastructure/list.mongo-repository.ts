@@ -10,6 +10,11 @@ export class ListMongoRepository implements ListRepository {
     private readonly userSchema: Model<ListEntity>
   ) {}
 
+  async findById(id: string): Promise<List> | null {
+    const listEntity = await this.userSchema.findById(id);
+    return listEntity ? this.entityToModel(listEntity): null;
+  }
+
   async findByTitleAndUserId(title: string, userId: string): Promise<List> | null {
     const listEntity = await this.userSchema.findOne({ title, userId })
     return listEntity ? this.entityToModel(listEntity): null;

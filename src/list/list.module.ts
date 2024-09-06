@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { CreateListHandler } from './application/command/handler/list.handler';
+import { CreateListHandler } from './application/command/handler/create-list.handler';
 import { ListCreatedHandler } from './application/event handler/list-created.handler';
 import { InjectionToken } from 'src/injection-token';
 import { ListMongoRepository } from './infrastructure/list.mongo-repository';
@@ -9,7 +9,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ListEntity, ListSchema } from './infrastructure/list.entity';
 import { ListController } from './user interface/list.controller';
 
-const TodoRepository = {
+const listRepository = {
   provide: InjectionToken.LIST_REPOSITORY,
   useClass: ListMongoRepository,
 }
@@ -29,8 +29,9 @@ const handlers = [
     ListController,
   ],
   providers: [
-    TodoRepository,
+    listRepository,
     ...handlers
   ],
+  exports: [listRepository],
 })
 export class ListModule {}

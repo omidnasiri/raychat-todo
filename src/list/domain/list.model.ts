@@ -10,6 +10,10 @@ export class List extends AggregateRoot {
     super();
   }
 
+  getId() {
+    return this.id;
+  }
+
   create() {
     this.apply(new ListCreatedEvent(this.id, this.title, this.userId));
   }
