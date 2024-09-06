@@ -6,6 +6,7 @@ import { TodoListCreatedHandler } from './application/event handler/todo-list-cr
 import { CreateTodoListHandler } from './application/command/handler/create-todo-list.handler';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from 'src/user/user.module';
+import { TodoRepository } from './infrastructure/todo-repository';
 
 const handlers = [
   CreateTodoListHandler,
@@ -14,12 +15,16 @@ const handlers = [
 
 @Module({
   imports: [
+    UserModule,
     CqrsModule,
     MongooseModule.forFeature([{ name: TodoListEntity.CollectionName, schema: TodoListSchema }]),
   ],
   controllers: [
     TodoListController,
   ],
-  providers: [...handlers],
+  providers: [
+    TodoRepository,
+    ...handlers
+  ],
 })
 export class TodoModule {}
