@@ -24,8 +24,6 @@ export class RegisterUserHandler implements ICommandHandler<RegisterUserCommand>
     const userEntity = new this.userModel({ username, password });
     const result = await userEntity.save();
 
-    console.log(result);
-
     const user = this.publisher.mergeObjectContext(
       new User(result._id.toString(), command.username, result.password)
     );
