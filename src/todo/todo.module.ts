@@ -10,6 +10,9 @@ import { CreateTodoHandler } from './application/command/handler/create-todo.han
 import { ListModule } from '../list/list.module';
 import { BulkDeleteTodoByListHandler } from './application/command/handler/bulk-delete-todo-by-list.handler';
 import { TodoDeletedHandler } from './application/event handler/todo-deleted.handler';
+import { DeleteTodoHandler } from './application/command/handler/delete-todo.command';
+import { UpdateTodoHandler } from './application/command/handler/update-todo.command';
+import { TodoUpdatedHandler } from './application/event handler/todo-updated.handler';
 
 const TodoRepository = {
   provide: InjectionToken.TODO_REPOSITORY,
@@ -19,8 +22,11 @@ const TodoRepository = {
 const handlers = [
   CreateTodoHandler,
   BulkDeleteTodoByListHandler,
+  DeleteTodoHandler,
+  UpdateTodoHandler,
   TodoCreatedHandler,
   TodoDeletedHandler,
+  TodoUpdatedHandler,
 ]
 
 @Module({

@@ -16,7 +16,7 @@ export class CreateTodoDto {
   description: string;
 
   @IsEnum(TodoPriority)
-  @ApiProperty({ example: '1' })
+  @ApiProperty({ enum: TodoPriority, example: '1' })
   priority: TodoPriority;
 
   @IsMongoId()

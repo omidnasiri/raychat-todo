@@ -8,7 +8,7 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ListEntity, ListSchema } from './infrastructure/list.entity';
 import { ListController } from './user interface/list.controller';
-import { EditListHandler } from './application/command/handler/edit-list.handler';
+import { UpdateListHandler } from './application/command/handler/update-list.handler';
 import { DeleteListHandler } from './application/command/handler/delete-list.handler';
 import { ListDeletedHandler } from './application/event handler/list-deleted.handler';
 import { ListUpdatedHandler } from './application/event handler/list-updated.handler';
@@ -21,7 +21,7 @@ const listRepository = {
 
 const handlers = [
   CreateListHandler,
-  EditListHandler,
+  UpdateListHandler,
   DeleteListHandler,
   ListCreatedHandler,
   ListUpdatedHandler,

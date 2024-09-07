@@ -3,9 +3,9 @@ import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { CreateListCommand } from "../application/command/create-list.command";
 import { ApiTags } from "@nestjs/swagger";
 import { DeleteListCommand } from "../application/command/delete-list.command";
-import { EditListCommand } from "../application/command/edit-list.command";
+import { UpdateListCommand } from "../application/command/update-list.command";
 import { CreateListDto } from "./dto/create-list.dto";
-import { EditListDto } from "./dto/edit-list.dto";
+import { UpdateListDto } from "./dto/update-list.dto";
 import { MongoIdQueryDto } from "src/libs/mongo-id-query.dto";
 import { FetchListsByUserDto } from "./dto/fetch-lists-by-user.dto";
 import { FetchListsByUserQuery } from "../application/query/fetch-lists-by-user.query";
@@ -24,8 +24,8 @@ export class ListController {
   }
 
   @Put(':id')
-  async update(@Param(new ValidationPipe()) param: MongoIdQueryDto, @Body() body: EditListDto) {
-    return this.commandBus.execute(new EditListCommand(param.id, body.title));
+  async update(@Param(new ValidationPipe()) param: MongoIdQueryDto, @Body() body: UpdateListDto) {
+    return this.commandBus.execute(new UpdateListCommand(param.id, body.title));
   }
 
   @Delete(':id')

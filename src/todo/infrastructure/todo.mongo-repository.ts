@@ -26,6 +26,16 @@ export class TodoMongoRepository implements TodoRepository {
     return this.entityToModel(await todoEntity.save());
   }
 
+  async findByIdAndDelete(id: string): Promise<Todo> | null {
+    const todoEntity = await this.todoSchema.findByIdAndDelete(id);
+    return todoEntity ? this.entityToModel(todoEntity): null;
+  }
+
+  async findByIdAndUpdate(id: string, title: string, description: string, priority: number): Promise<Todo> | null {
+    const todoEntity = await this.todoSchema.findByIdAndUpdate(id, { title, description, priority });
+    return todoEntity ? this.entityToModel(todoEntity): null;
+  }
+
   async bulkDeleteByListId(listId: string): Promise<void> {
     await this.todoSchema.deleteMany({ list: { _id: listId } });
   }

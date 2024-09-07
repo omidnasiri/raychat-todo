@@ -7,4 +7,6 @@ export interface TodoRepository {
   findByTitleAndListId(title: string, listId: string): Promise<Todo> | null;
   insert(title: string, description: string, priority: number, list: List): Promise<Todo>;
   bulkDeleteByListId(listId: string): Promise<void>;
+  findByIdAndDelete(id: string): Promise<Todo> | null;
+  findByIdAndUpdate(id: string, title: string, description: string, priority: number): Promise<Todo> | null;
 }

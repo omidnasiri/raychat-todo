@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, MinLength, MaxLength } from "class-validator";
 
-export class EditListDto {
+export class UpdateListDto {
   @IsString()
   @MinLength(2)
   @MaxLength(32)
