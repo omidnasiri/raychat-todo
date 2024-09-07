@@ -26,9 +26,17 @@ const ENV = process.env.NODE_ENV;
         const password = configService.get('MONGO_PASS');
         const database = configService.get('MONGO_DB');
         if (user && password) {
+          if (host.startsWith('mongodb+srv')) {
+            return {
+              uri: `mongodb+srv://${user}:${password}@${host}/${database}`,
+            };
+          }
           return {
-            uri: `mongodb+srv://${user}:${password}@${host}:${port}/${database}`,
+            uri: `mongodb://${user}:${password}@${host}:${port}/${database}`,
           };
+        }
+        if (host.startsWith('mongodb+srv')) {
+          return { uri: `mongodb+srv://${host}/${database}` };
         }
         return { uri: `mongodb://${host}:${port}/${database}` };
       },
