@@ -18,7 +18,7 @@ export class CreateTodoHandler implements ICommandHandler<CreateTodoCommand> {
   async execute(command: CreateTodoCommand) {
     const { title, description, priority, listId } = command;
 
-    const list = await this.listRepository.findById(listId)
+    const list = await this.listRepository.findById(listId);
     if (!list) throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
 
     await this.todoRepository.findByTitleAndListId(title, listId).then((item) => {

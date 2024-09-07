@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEnum, IsString, Length, MaxLength, MinLength } from "class-validator";
+import { IsEnum, IsMongoId, IsString, MaxLength, MinLength } from "class-validator";
 import { TodoPriority } from "../../domain/todo.model";
 
 export class CreateTodoDto {
@@ -19,8 +19,7 @@ export class CreateTodoDto {
   @ApiProperty({ example: '1' })
   priority: TodoPriority;
 
-  @IsString()
-  @Length(24, 24)
+  @IsMongoId()
   @ApiProperty({ example: '66dad13255bc12fbed77144a' })
   listId: string;
 }
