@@ -5,6 +5,7 @@ import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { TodoModule } from './todo/todo.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { HttpExceptionFilter } from './libs/http-exception.filter';
+import { AppSaga } from './app.saga';
 
 const ENV = process.env.NODE_ENV;
 
@@ -44,6 +45,7 @@ const ENV = process.env.NODE_ENV;
       provide: APP_FILTER,
       useClass: HttpExceptionFilter
     },
+    AppSaga,
   ],
 })
 export class AppModule {}

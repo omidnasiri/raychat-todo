@@ -8,6 +8,8 @@ import { TodoEntity, TodoSchema } from './infrastructure/todo.entity';
 import { TodoMongoRepository } from './infrastructure/todo.mongo-repository';
 import { CreateTodoHandler } from './application/command/handler/create-todo.handler';
 import { ListModule } from '../list/list.module';
+import { BulkDeleteTodoByListHandler } from './application/command/handler/bulk-delete-todo-by-list.handler';
+import { TodoDeletedHandler } from './application/event handler/todo-deleted.handler';
 
 const TodoRepository = {
   provide: InjectionToken.TODO_REPOSITORY,
@@ -16,7 +18,9 @@ const TodoRepository = {
 
 const handlers = [
   CreateTodoHandler,
+  BulkDeleteTodoByListHandler,
   TodoCreatedHandler,
+  TodoDeletedHandler,
 ]
 
 @Module({

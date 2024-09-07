@@ -1,6 +1,7 @@
 import { AggregateRoot } from "@nestjs/cqrs";
 import { List } from "src/list/domain/list.model";
 import { TodoCreatedEvent } from "./event/todo-created.event";
+import { TodoDeletedEvent } from "./event/todo-deleted.event";
 
 export enum TodoPriority {
   LOW = 1,
@@ -22,5 +23,9 @@ export class Todo extends AggregateRoot {
 
   create() {
     this.apply(new TodoCreatedEvent(this.id, this.list, this.title, this.priority, this.description));
+  }
+
+  delete() {
+    this.apply(new TodoDeletedEvent(this.id));
   }
 }
