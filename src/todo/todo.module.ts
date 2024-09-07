@@ -13,6 +13,7 @@ import { TodoDeletedHandler } from './application/event handler/todo-deleted.han
 import { DeleteTodoHandler } from './application/command/handler/delete-todo.command';
 import { UpdateTodoHandler } from './application/command/handler/update-todo.command';
 import { TodoUpdatedHandler } from './application/event handler/todo-updated.handler';
+import { FetchTodosByListHandler } from './application/query/handler/fetch-todos-by-list.handler';
 
 const TodoRepository = {
   provide: InjectionToken.TODO_REPOSITORY,
@@ -27,6 +28,7 @@ const handlers = [
   TodoCreatedHandler,
   TodoDeletedHandler,
   TodoUpdatedHandler,
+  FetchTodosByListHandler,
 ]
 
 @Module({

@@ -12,7 +12,7 @@ export class TodoMongoRepository implements TodoRepository {
   ) {}
 
   async findByListId(listId: string): Promise<Todo[]> {
-    const todoEntities = await this.todoSchema.find({ list: { _id: listId } });
+    const todoEntities = await this.todoSchema.find({ list: { _id: listId } }).sort({ priority: 1 });
     return todoEntities.map((entity) => this.entityToModel(entity));
   }
 
