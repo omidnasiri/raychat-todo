@@ -12,7 +12,7 @@ export class TodoController {
   ) {}
 
   @Post()
-  async create(@Body() dto: CreateTodoDto) {
-    return this.commandBus.execute(new CreateTodoCommand(dto.title, dto.listId, dto.description, dto.priority));
+  async create(@Body() body: CreateTodoDto) {
+    return this.commandBus.execute(new CreateTodoCommand(body.title, body.listId, body.description, body.priority));
   }
 }

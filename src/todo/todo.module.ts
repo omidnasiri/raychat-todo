@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TodoCreatedHandler } from './application/event handler/todo-created.handler';
-import { InjectionToken } from '../injection-token';
+import { InjectionToken } from '../libs/injection-token';
 import { CqrsModule } from '@nestjs/cqrs';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TodoController } from './user interface/todo.controller';

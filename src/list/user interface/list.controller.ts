@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Param, Post, Put, ValidationPipe } from "@nestjs/common";
 import { CommandBus } from "@nestjs/cqrs";
 import { CreateListCommand } from "../application/command/create-list.command";
 import { ApiTags } from "@nestjs/swagger";
@@ -6,6 +6,7 @@ import { DeleteListCommand } from "../application/command/delete-list.command";
 import { EditListCommand } from "../application/command/edit-list.command";
 import { CreateListDto } from "./dto/create-list.dto";
 import { EditListDto } from "./dto/edit-list.dto";
+import { MongoIdQueryDto } from "src/libs/mongo-id-query.dto";
 
 @ApiTags('Todo List')
 @Controller('lists')
@@ -15,17 +16,17 @@ export class ListController {
   ) {}
 
   @Post()
-  async create(@Body() dto: CreateListDto) {
-    return this.commandBus.execute(new CreateListCommand(dto.title, dto.userId));
+  async create(@Body() body: CreateListDto) {
+    return this.commandBus.execute(new CreateListCommand(body.title, body.userId));
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() dto: EditListDto) {
-    return this.commandBus.execute(new EditListCommand(id, dto.title));
+  async update(@Param(new ValidationPipe()) param: MongoIdQueryDto, @Body() body: EditListDto) {
+    return this.commandBus.execute(new EditListCommand(param.id, body.title));
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: string) {
-    return this.commandBus.execute(new DeleteListCommand(id));
+  async delete(@Param(new ValidationPipe()) param: MongoIdQueryDto) {
+    return this.commandBus.execute(new DeleteListCommand(param.id));
   }
 }

@@ -2,7 +2,7 @@ import { CommandHandler, EventPublisher, ICommandHandler } from "@nestjs/cqrs";
 import { EditListCommand } from "../edit-list.command";
 import { ListRepository } from "src/list/domain/list-repository";
 import { HttpException, HttpStatus, Inject } from "@nestjs/common";
-import { InjectionToken } from "src/injection-token";
+import { InjectionToken } from "src/libs/injection-token";
 
 @CommandHandler(EditListCommand)
 export class EditListHandler implements ICommandHandler<EditListCommand> {

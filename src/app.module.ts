@@ -4,7 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { TodoModule } from './todo/todo.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { HttpExceptionFilter } from './http-exception.filter';
+import { HttpExceptionFilter } from './libs/http-exception.filter';
 
 const ENV = process.env.NODE_ENV;
 

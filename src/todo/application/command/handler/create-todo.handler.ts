@@ -1,7 +1,7 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from "@nestjs/cqrs";
 import { CreateTodoCommand } from "../create-todo.command";
 import { HttpException, HttpStatus, Inject } from "@nestjs/common";
-import { InjectionToken } from "../../../../injection-token";
+import { InjectionToken } from "../../../../libs/injection-token";
 import { TodoRepository } from "../../../domain/todo.repository";
 import { ListRepository } from "../../../../list/domain/list-repository";
 

@@ -2,7 +2,7 @@ import { CommandHandler, EventPublisher, ICommandHandler } from "@nestjs/cqrs";
 import { CreateListCommand } from "../create-list.command";
 import { HttpException, HttpStatus, Inject } from "@nestjs/common";
 import { UserRepository } from "../../../../user/domain/user.repository";
-import { InjectionToken } from "../../../../injection-token";
+import { InjectionToken } from "../../../../libs/injection-token";
 import { ListRepository } from "../../../domain/list-repository";
 
 @CommandHandler(CreateListCommand)

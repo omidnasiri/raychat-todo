@@ -12,7 +12,7 @@ export class UserController {
   ) {}
 
   @Post()
-  async register(@Body() dto: RegisterUserDto) {
-    return this.commandBus.execute(new RegisterUserCommand(dto.username, dto.password));
+  async register(@Body() body: RegisterUserDto) {
+    return this.commandBus.execute(new RegisterUserCommand(body.username, body.password));
   }
 }
