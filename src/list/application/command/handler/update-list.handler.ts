@@ -1,8 +1,8 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from "@nestjs/cqrs";
 import { UpdateListCommand } from "../update-list.command";
-import { ListRepository } from "src/list/domain/list-repository";
+import { ListRepository } from "../../../..//list/domain/list-repository";
 import { HttpException, HttpStatus, Inject } from "@nestjs/common";
-import { InjectionToken } from "src/libs/injection-token";
+import { InjectionToken } from "../../../../libs/injection-token";
 
 @CommandHandler(UpdateListCommand)
 export class UpdateListHandler implements ICommandHandler<UpdateListCommand> {
@@ -22,5 +22,7 @@ export class UpdateListHandler implements ICommandHandler<UpdateListCommand> {
 
     mergedList.update();
     mergedList.commit();
+
+    return list;
   }
 }

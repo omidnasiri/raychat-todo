@@ -2,8 +2,8 @@ import { CommandHandler, EventPublisher, ICommandHandler } from "@nestjs/cqrs";
 import { BulkDeleteTodoByListCommand } from "../bulk-delete-todo-by-list.command";
 import { TodoRepository } from "src/todo/domain/todo.repository";
 import { HttpException, HttpStatus, Inject } from "@nestjs/common";
-import { InjectionToken } from "src/libs/injection-token";
-import { ListRepository } from "src/list/domain/list-repository";
+import { InjectionToken } from "../../../..//libs/injection-token";
+import { ListRepository } from "../../../../list/domain/list-repository";
 
 @CommandHandler(BulkDeleteTodoByListCommand)
 export class BulkDeleteTodoByListHandler implements ICommandHandler<BulkDeleteTodoByListCommand> {

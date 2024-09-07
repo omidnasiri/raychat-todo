@@ -6,7 +6,7 @@ import { CreateTodoDto } from "./dto/create-todo.dto";
 import { UpdateTodoDto } from "./dto/update-todo.dto";
 import { UpdateTodoCommand } from "../application/command/update-todo.command";
 import { DeleteTodoCommand } from "../application/command/delete-todo.command";
-import { MongoIdQueryDto } from "src/libs/mongo-id-query.dto";
+import { MongoIdQueryDto } from "../../libs/mongo-id-query.dto";
 import { FetchTodosByListDto } from "./dto/fetch-lists-by-user.dto";
 import { FetchTodosByListQuery } from "../application/query/fetch-todos-by-list.query";
 

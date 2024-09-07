@@ -6,7 +6,7 @@ import { DeleteListCommand } from "../application/command/delete-list.command";
 import { UpdateListCommand } from "../application/command/update-list.command";
 import { CreateListDto } from "./dto/create-list.dto";
 import { UpdateListDto } from "./dto/update-list.dto";
-import { MongoIdQueryDto } from "src/libs/mongo-id-query.dto";
+import { MongoIdQueryDto } from "../../libs/mongo-id-query.dto";
 import { FetchListsByUserDto } from "./dto/fetch-lists-by-user.dto";
 import { FetchListsByUserQuery } from "../application/query/fetch-lists-by-user.query";
 

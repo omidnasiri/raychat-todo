@@ -1,7 +1,7 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from "@nestjs/cqrs";
-import { ListRepository } from "src/list/domain/list-repository";
-import { Delete, HttpException, HttpStatus, Inject } from "@nestjs/common";
-import { InjectionToken } from "src/libs/injection-token";
+import { ListRepository } from "../../../../list/domain/list-repository";
+import { HttpException, HttpStatus, Inject } from "@nestjs/common";
+import { InjectionToken } from "../../../../libs/injection-token";
 import { DeleteListCommand } from "../delete-list.command";
 
 @CommandHandler(DeleteListCommand)

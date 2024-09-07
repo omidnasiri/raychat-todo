@@ -1,8 +1,8 @@
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
 import { FetchTodosByListQuery } from "../fetch-todos-by-list.query";
 import { Inject } from "@nestjs/common";
-import { InjectionToken } from "src/libs/injection-token";
-import { TodoRepository } from "src/todo/domain/todo.repository";
+import { InjectionToken } from "../../../../libs/injection-token";
+import { TodoRepository } from "../../../domain/todo.repository";
 
 @QueryHandler(FetchTodosByListQuery)
 export class FetchTodosByListHandler implements IQueryHandler<FetchTodosByListQuery> {

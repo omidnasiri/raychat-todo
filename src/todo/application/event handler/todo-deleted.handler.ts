@@ -1,5 +1,5 @@
 import { EventsHandler, IEventHandler } from "@nestjs/cqrs";
-import { TodoDeletedEvent } from "src/todo/domain/event/todo-deleted.event";
+import { TodoDeletedEvent } from "../../domain/event/todo-deleted.event";
 
 @EventsHandler(TodoDeletedEvent)
 export class TodoDeletedHandler implements IEventHandler<TodoDeletedEvent> {

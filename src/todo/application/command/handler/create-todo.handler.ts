@@ -31,5 +31,7 @@ export class CreateTodoHandler implements ICommandHandler<CreateTodoCommand> {
 
     todo.create();
     todo.commit();
+
+    return todo;
   }
 }

@@ -28,5 +28,7 @@ export class RegisterUserHandler implements ICommandHandler<RegisterUserCommand>
 
     user.register();
     user.commit();
+
+    return { id: user.Id, username: user.Username };
   }
 }

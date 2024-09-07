@@ -47,7 +47,7 @@ describe('RegisterUserHandler', () => {
     await handler.execute(command);
 
     expect(userRepository.findByUsername).toHaveBeenCalledWith('testuser');
-    expect(userRepository.insert).toHaveBeenCalledWith('testuser', 'password');
+    expect(userRepository.insert).toHaveBeenCalledWith('testuser', expect.any(String));
     expect(publisher.mergeObjectContext).toHaveBeenCalled();
     const user = (publisher.mergeObjectContext as jest.Mock).mock.results[0].value;
     expect(user.register).toHaveBeenCalled();

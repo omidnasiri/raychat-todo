@@ -1,5 +1,5 @@
 import { EventsHandler, IEventHandler } from "@nestjs/cqrs";
-import { TodoUpdatedEvent } from "src/todo/domain/event/todo-updated.event";
+import { TodoUpdatedEvent } from "../../domain/event/todo-updated.event";
 
 @EventsHandler(TodoUpdatedEvent)
 export class TodoUpdatedHandler implements IEventHandler<TodoUpdatedEvent> {

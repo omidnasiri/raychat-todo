@@ -32,5 +32,7 @@ export class CreateListHandler implements ICommandHandler<CreateListCommand> {
 
     list.create();
     list.commit();
+
+    return list;
   }
 }

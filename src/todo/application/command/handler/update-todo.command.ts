@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Inject } from "@nestjs/common";
 import { CommandHandler, EventPublisher, ICommandHandler } from "@nestjs/cqrs";
-import { InjectionToken } from "src/libs/injection-token";
-import { TodoRepository } from "src/todo/domain/todo.repository";
+import { InjectionToken } from "../../../../libs/injection-token";
+import { TodoRepository } from "../../../domain/todo.repository";
 import { UpdateTodoCommand } from "../update-todo.command";
 
 @CommandHandler(UpdateTodoCommand)
@@ -22,5 +22,7 @@ export class UpdateTodoHandler implements ICommandHandler<UpdateTodoCommand> {
 
     mergedTodo.delete();
     mergedTodo.commit();
+
+    return todo;
   }
 }

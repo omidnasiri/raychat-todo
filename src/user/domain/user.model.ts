@@ -10,6 +10,14 @@ export class User extends AggregateRoot {
     super();
   }
 
+  get Id() {
+    return this.id;
+  }
+
+  get Username() {
+    return this.username;
+  }
+
   register() {
     this.apply(new UserRegisteredEvent(this.id, this.username, this.password));
   }

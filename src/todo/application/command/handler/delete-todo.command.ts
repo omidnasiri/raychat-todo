@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Inject } from "@nestjs/common";
 import { CommandHandler, EventPublisher, ICommandHandler } from "@nestjs/cqrs";
 import { DeleteTodoCommand } from "../delete-todo.command";
-import { InjectionToken } from "src/libs/injection-token";
-import { TodoRepository } from "src/todo/domain/todo.repository";
+import { InjectionToken } from "../../../../libs/injection-token";
+import { TodoRepository } from "../../../domain/todo.repository";
 
 @CommandHandler(DeleteTodoCommand)
 export class DeleteTodoHandler implements ICommandHandler<DeleteTodoCommand> {

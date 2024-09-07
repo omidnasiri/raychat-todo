@@ -39,7 +39,10 @@ describe('UserController (e2e)', () => {
       .send(newUser)
       .expect(201)
       .expect((res) => {
-        expect(res.body).toStrictEqual({});
+        expect(res.body).toStrictEqual({
+          id: expect.any(String),
+          username: newUser.username,
+        });
       });
   });
 

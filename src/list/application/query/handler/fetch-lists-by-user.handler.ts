@@ -1,8 +1,8 @@
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
 import { FetchListsByUserQuery } from "../fetch-lists-by-user.query";
 import { Inject } from "@nestjs/common";
-import { InjectionToken } from "src/libs/injection-token";
-import { ListRepository } from "src/list/domain/list-repository";
+import { InjectionToken } from "../../../../libs/injection-token";
+import { ListRepository } from "../../../domain/list-repository";
 
 @QueryHandler(FetchListsByUserQuery)
 export class FetchListsByUserHandler implements IQueryHandler<FetchListsByUserQuery> {

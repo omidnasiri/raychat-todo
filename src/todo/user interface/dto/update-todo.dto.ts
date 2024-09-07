@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, MinLength, MaxLength, IsEnum, IsMongoId } from "class-validator";
-import { TodoPriority } from "src/todo/domain/todo.model";
+import { TodoPriority } from "../../domain/todo.model";
 
 export class UpdateTodoDto {
   @IsMongoId()
