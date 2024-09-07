@@ -12,7 +12,7 @@ export class EditListHandler implements ICommandHandler<EditListCommand> {
     private readonly publisher: EventPublisher,
   ) {}
 
-  async execute(command: EditListCommand): Promise<void> {
+  async execute(command: EditListCommand) {
     const { id, title } = command;
 
     const list = await this.listRepository.findByIdAndUpdate(id, title);

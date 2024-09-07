@@ -12,6 +12,7 @@ import { EditListHandler } from './application/command/handler/edit-list.handler
 import { DeleteListHandler } from './application/command/handler/delete-list.handler';
 import { ListDeletedHandler } from './application/event handler/list-deleted.handler';
 import { ListUpdatedHandler } from './application/event handler/list-updated.handler';
+import { FetchListsByUserHandler } from './application/query/handler/fetch-lists-by-user.handler';
 
 const listRepository = {
   provide: InjectionToken.LIST_REPOSITORY,
@@ -25,6 +26,7 @@ const handlers = [
   ListCreatedHandler,
   ListUpdatedHandler,
   ListDeletedHandler,
+  FetchListsByUserHandler,
 ]
 
 @Module({

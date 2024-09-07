@@ -12,7 +12,7 @@ export class DeleteListHandler implements ICommandHandler<DeleteListCommand> {
     private readonly publisher: EventPublisher,
   ) {}
 
-  async execute(command: DeleteListCommand): Promise<void> {
+  async execute(command: DeleteListCommand) {
     const { id } = command;
 
     const list = await this.listRepository.findByIdAndDelete(id);

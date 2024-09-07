@@ -20,6 +20,11 @@ export class ListMongoRepository implements ListRepository {
     return listEntity ? this.entityToModel(listEntity): null;
   }
 
+  async findByUserId(userId: string): Promise<List[]> {
+    const listEntities = await this.userSchema.find({ userId });
+    return listEntities.map((entity) => this.entityToModel(entity));
+  }
+
   async insert(title: string, userId: string): Promise<List> {
     const listEntity = new this.userSchema({ title, userId });
     return this.entityToModel(await listEntity.save());
